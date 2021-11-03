@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BaseCode</name>
+    </assembly>
+    <members>
+        <member name="M:Quadris.Board.Update">
+            <summary>
+            This method updates the grid and moves the active piece down
+            </summary>
+        </member>
+        <member name="M:Quadris.Board.GetCellInfo(System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="row">the row</param>
+            <param name="col">the column</param>
+            <returns>A GridCellInfo object</returns>
+        </member>
+    </members>
+</doc>

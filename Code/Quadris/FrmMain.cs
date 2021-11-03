@@ -91,7 +91,14 @@ namespace Quadris {
       UpdateGrid();
     }
 
-    private void FrmMain_KeyDown(object sender, KeyEventArgs e) {
+    private void BoardRF_Tick(object sender, EventArgs e)
+    {
+        board.RefreshGridWithActivePiece();
+        UpdateGrid();
+    }
+
+
+        private void FrmMain_KeyDown(object sender, KeyEventArgs e) {
       switch (e.KeyCode) {
         case Keys.X:
           board.RotateActivePieceRight();
@@ -105,7 +112,7 @@ namespace Quadris {
         case Keys.Left:
           board.MoveActivePieceLeft();
           break;
-      }
+            }
     }
   }
 }

@@ -59,7 +59,7 @@ namespace Quadris {
       }
     }
 
-    private void RefreshGridWithActivePiece() {
+    public void RefreshGridWithActivePiece() {
       for (int r = 0; r < Grid.GetLength(0); r++) {
         for (int c = 0; c < Grid.GetLength(1); c++) {
           GridCellInfo cellInfo = Grid[r, c];

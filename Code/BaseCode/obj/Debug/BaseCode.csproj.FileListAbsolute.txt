@@ -1,0 +1,7 @@
+C:\Users\gargr\Source\Repos\Quadris\Code\BaseCode\bin\Debug\BaseCode.xml
+C:\Users\gargr\Source\Repos\Quadris\Code\BaseCode\bin\Debug\BaseCode.dll
+C:\Users\gargr\Source\Repos\Quadris\Code\BaseCode\bin\Debug\BaseCode.pdb
+C:\Users\gargr\Source\Repos\Quadris\Code\BaseCode\obj\Debug\BaseCode.csproj.AssemblyReference.cache
+C:\Users\gargr\Source\Repos\Quadris\Code\BaseCode\obj\Debug\BaseCode.csproj.CoreCompileInputs.cache
+C:\Users\gargr\Source\Repos\Quadris\Code\BaseCode\obj\Debug\BaseCode.dll
+C:\Users\gargr\Source\Repos\Quadris\Code\BaseCode\obj\Debug\BaseCode.pdb
