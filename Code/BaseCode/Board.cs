@@ -1,4 +1,6 @@
 ﻿#pragma warning disable 1591
+using System;
+
 namespace Quadris {
   public enum CellState {
     EMPTY,
@@ -35,6 +37,10 @@ namespace Quadris {
   public class Board {
     public GridCellInfo[,] Grid { get; private set; }
     public Piece ActivePiece { get; set; }
+
+    public int score = 0;
+    public int rows_cleared = 0;
+    public int LV = 0;
 
     public Board() {
       Grid = new GridCellInfo[24, 10];
@@ -210,6 +216,7 @@ namespace Quadris {
     }
 
     public void CheckForLine() {
+      int cleared = 0;
       for (int curRow = 0; curRow < Grid.GetLength(0); curRow++) {
         bool allFilled = true;
         for (int col = 0; col < Grid.GetLength(1); col++) {
@@ -217,8 +224,10 @@ namespace Quadris {
             allFilled = false;
             break;
           }
+
         }
         if (allFilled) {
+          cleared++;
           for (int col = 0; col < Grid.GetLength(1); col++) {
             for (int dropRow = curRow; dropRow > 0; dropRow--) {
               Grid[dropRow, col] = Grid[dropRow - 1, col];
@@ -227,6 +236,41 @@ namespace Quadris {
           curRow--;
         }
       }
+      rows_cleared += cleared;
+      if (cleared > 0)
+       {
+        Scoreing(cleared);
+       }
     }
-  }
+
+        private void Scoreing(int cleared)
+        {
+            switch (cleared)
+            {
+                case 1:
+                    score += 40 * (LV + 1);
+                    break;
+                case 2:
+                    score += 100 * (LV + 1);
+                    break;
+                case 3:
+                    score += 300 * (LV + 1);
+                    break;
+                default:
+                    score += 1200 * (LV + 1);
+                    break;
+
+            }
+        }
+
+        public bool LevelUp()
+        {
+            if((LV + 1) * 10 < rows_cleared)
+            {
+                LV++;
+                return true;
+            }
+            return false;
+        }
+    }
 }

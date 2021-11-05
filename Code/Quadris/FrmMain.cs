@@ -44,7 +44,7 @@ namespace Quadris {
       board.ActivePiece = piece;
       CreateGrid();
       sndPlayer = new SoundPlayer(Resources.bg_music);
-      sndPlayer.PlayLooping();
+      //sndPlayer.PlayLooping();
     }
 
     private void CreateGrid() {
@@ -85,16 +85,43 @@ namespace Quadris {
         Left = col * CELL_WIDTH
       };
     }
-
+    /// <summary>
+    /// timer responce for falling peace
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void tmrFps_Tick(object sender, EventArgs e) {
       board.Update();
       UpdateGrid();
     }
 
+    /// <summary>
+    /// timer for over all game. refreshes board, advances level, displays game info.
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void BoardRF_Tick(object sender, EventArgs e)
     {
         board.RefreshGridWithActivePiece();
         UpdateGrid();
+
+            // check for level up, if so speed up game
+            if (board.LevelUp())
+            {
+                if (tmrFps.Interval - 10 > 10)
+                {
+                    tmrFps.Interval -= 10;
+                }
+                else if (tmrFps.Interval - 10 <= 0)
+                {
+                    tmrFps.Interval = 1;
+                }
+               }
+
+        // display info
+        labelscore.Text = $"{board.score}";
+        labellines.Text = $"{board.rows_cleared}";
+        labellevel.Text = $"{board.LV}";
     }
 
 
@@ -112,7 +139,22 @@ namespace Quadris {
         case Keys.Left:
           board.MoveActivePieceLeft();
           break;
+
+        // this is for testing higher levels
+        case Keys.L:
+           board.LV++;
+                    if (tmrFps.Interval - 10 > 10)
+                    {
+                        tmrFps.Interval -= 10;
+                    }
+                    else if (tmrFps.Interval - 10 <= 0)
+                    {
+                        tmrFps.Interval = 1;
+                    }
+           break;
+
             }
     }
-  }
+
+    }
 }
