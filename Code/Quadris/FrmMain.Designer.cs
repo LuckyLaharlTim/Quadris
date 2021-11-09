@@ -38,6 +38,16 @@ namespace Quadris {
             this.label4 = new System.Windows.Forms.Label();
             this.labellevel = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.CryoStall_disp = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panBoard
@@ -147,12 +157,111 @@ namespace Quadris {
             this.label6.TabIndex = 8;
             this.label6.Text = "Level:";
             // 
+            // CryoStall_disp
+            // 
+            this.CryoStall_disp.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CryoStall_disp.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.CryoStall_disp.Location = new System.Drawing.Point(949, 293);
+            this.CryoStall_disp.Name = "CryoStall_disp";
+            this.CryoStall_disp.Size = new System.Drawing.Size(55, 40);
+            this.CryoStall_disp.TabIndex = 11;
+            this.CryoStall_disp.Text = "0";
+            this.CryoStall_disp.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label3
+            // 
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label3.Location = new System.Drawing.Point(798, 293);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(145, 40);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "CryoStall:";
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.Gray;
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.label10);
+            this.panel2.Controls.Add(this.label9);
+            this.panel2.Controls.Add(this.label8);
+            this.panel2.Controls.Add(this.label7);
+            this.panel2.Controls.Add(this.label5);
+            this.panel2.Controls.Add(this.label2);
+            this.panel2.Location = new System.Drawing.Point(804, 346);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(218, 272);
+            this.panel2.TabIndex = 12;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(67, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(85, 25);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Controls";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(3, 37);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(185, 22);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "Move Left : Left Arrow";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(3, 69);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(209, 22);
+            this.label7.TabIndex = 2;
+            this.label7.Text = "Move Right : Right Arrow";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(3, 102);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(124, 22);
+            this.label8.TabIndex = 3;
+            this.label8.Text = "Rotate Left : Z";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(3, 133);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(137, 22);
+            this.label9.TabIndex = 4;
+            this.label9.Text = "Rotate Right : X";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(3, 164);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(149, 22);
+            this.label10.TabIndex = 5;
+            this.label10.Text = "CryoStall : Space";
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(1155, 1050);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.CryoStall_disp);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.labellevel);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.labellines);
@@ -169,6 +278,8 @@ namespace Quadris {
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmMain_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmMain_KeyDown);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -188,6 +299,15 @@ namespace Quadris {
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label labellevel;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label CryoStall_disp;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label2;
     }
 }
 

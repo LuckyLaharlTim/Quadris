@@ -41,6 +41,8 @@ namespace Quadris {
     public int score = 0;
     public int rows_cleared = 0;
     public int LV = 0;
+    public int cryo_stall = 3;
+    public int lncounter = 0;
 
     public Board() {
       Grid = new GridCellInfo[24, 10];
@@ -241,7 +243,18 @@ namespace Quadris {
        {
         Scoreing(cleared);
        }
+      CryoAdd(cleared);
     }
+
+        private void CryoAdd(int cleared)
+        {
+            lncounter += cleared;
+            if(lncounter >= 10)
+            {
+                cryo_stall++;
+                lncounter = 0;
+            } 
+        }
 
         private void Scoreing(int cleared)
         {

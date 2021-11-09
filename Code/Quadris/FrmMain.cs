@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Media;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace Quadris {
   public partial class FrmMain : Form {
@@ -18,7 +19,11 @@ namespace Quadris {
 
     private SoundPlayer sndPlayer;
 
-    private static readonly Dictionary<PieceColor, Image> pieceColorToImgMap = new Dictionary<PieceColor, Image> {
+    public bool freeze = false;
+    public bool Unfreeze = false;
+
+
+        private static readonly Dictionary<PieceColor, Image> pieceColorToImgMap = new Dictionary<PieceColor, Image> {
       {PieceColor.BLUE, Resources.cell_blue},
       {PieceColor.CYAN, Resources.cell_cyan},
       {PieceColor.GREEN, Resources.cell_green},
@@ -33,6 +38,7 @@ namespace Quadris {
       {PieceColor.GROUND, Resources.cell_ground},
       {PieceColor.DARK, Resources.cell_dark},
     };
+
 
     public FrmMain() {
       InitializeComponent();
@@ -95,33 +101,71 @@ namespace Quadris {
       UpdateGrid();
     }
 
-    /// <summary>
-    /// timer for over all game. refreshes board, advances level, displays game info.
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private void BoardRF_Tick(object sender, EventArgs e)
+        /// <summary>
+        /// timer for over all game. refreshes board, advances level, displays game info.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+   DateTime time;
+   bool flock = true;
+   private void BoardRF_Tick(object sender, EventArgs e)
     {
         board.RefreshGridWithActivePiece();
         UpdateGrid();
+
+            if (freeze && flock)
+            {
+                flock = false;
+                freeze = false;
+                time = DateTime.Now;
+                tmrFps.Interval *= 2;
+                Unfreeze = true;
+                panBoard.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(162)))), ((int)(((byte)(255)))));
+                Console.WriteLine($"froze : {tmrFps.Interval}");
+            }
+            else if (!freeze && DateTime.Now - time >= new TimeSpan(200000000) && Unfreeze)
+            {
+                tmrFps.Interval /= 2;
+                flock = true;
+                Unfreeze = false;
+                panBoard.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+                Console.WriteLine($"unfroze : {tmrFps.Interval}");
+            }
 
             // check for level up, if so speed up game
             if (board.LevelUp())
             {
                 if (tmrFps.Interval - 10 > 10)
                 {
-                    tmrFps.Interval -= 10;
+                    if (freeze)
+                    {
+                        tmrFps.Interval -= 5;
+                    }
+                    else
+                    {
+                        tmrFps.Interval -= 10;
+                    }
+                    
                 }
                 else if (tmrFps.Interval - 10 <= 0)
                 {
-                    tmrFps.Interval = 1;
+                    if (freeze)
+                    {
+                        tmrFps.Interval = 2;
+                    }
+                    else
+                    {
+                        tmrFps.Interval = 1;
+                    }
                 }
                }
+
 
         // display info
         labelscore.Text = $"{board.score}";
         labellines.Text = $"{board.rows_cleared}";
         labellevel.Text = $"{board.LV}";
+        CryoStall_disp.Text = $"{board.cryo_stall}";
     }
 
 
@@ -153,8 +197,17 @@ namespace Quadris {
                     }
            break;
 
+        case Keys.Space:
+                    if(board.cryo_stall > 0 && flock)
+                    {
+                        freeze = true;
+                        board.cryo_stall--;
+                    }
+           break;
+
             }
     }
+
 
     }
 }
