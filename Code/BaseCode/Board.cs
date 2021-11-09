@@ -1,11 +1,16 @@
 ﻿#pragma warning disable 1591
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Diagnostics;
 
 namespace Quadris {
   public enum CellState {
     EMPTY,
     OCCUPIED_PREVIOUSLY,
+    OCCUPIED_NEXT_PIECE,
     OCCUPIED_ACTIVE_PIECE,
+    OCCUPIED_HELD_PIECE,
     COLLISION
   }
 
@@ -32,15 +37,29 @@ namespace Quadris {
       State = CellState.OCCUPIED_ACTIVE_PIECE;
       Color = activePiece.Color;
     }
+
+    public void SetToNextPiece(Piece nextPiece) {
+      State = CellState.OCCUPIED_NEXT_PIECE;
+      Color = nextPiece.Color;
+    }
+
+    public void SetToHeldPiece(Piece heldPiece) {
+      State = CellState.OCCUPIED_HELD_PIECE;
+      Color = heldPiece.Color;
+    }
   }
 
   public class Board {
     public GridCellInfo[,] Grid { get; private set; }
     public Piece ActivePiece { get; set; }
+    public Piece NextPiece { get; set; }
+    public Piece HeldPiece { get; set; }
 
     public int score = 0;
     public int rows_cleared = 0;
     public int LV = 0;
+    public static int[] PieceArr;
+    public static List<int> gBag;
     public int cryo_stall = 3;
     public int lncounter = 0;
 
@@ -51,6 +70,15 @@ namespace Quadris {
           Grid[i, j] = new GridCellInfo();
         }
       }
+      /*
+      PieceArr = new PieceType[7];
+            foreach (int let in Enum.GetValues(typeof(PieceType)))
+            {
+                PieceArr[let] = (PieceType)let;
+            }
+      /**/
+        PieceArr = new int[] {0,1,2,3,4,5,6};
+        gBag = PieceArr.ToList();
     }
 
     /// <summary>
@@ -68,14 +96,18 @@ namespace Quadris {
     }
 
     public void RefreshGridWithActivePiece() {
+    // for every cell in the grid . . .
       for (int r = 0; r < Grid.GetLength(0); r++) {
         for (int c = 0; c < Grid.GetLength(1); c++) {
+        // the value of the cell's row and column is saved
           GridCellInfo cellInfo = Grid[r, c];
+          // if the current cell is the active piece, change it back to empty (visually and by state)
           if (cellInfo.State == CellState.OCCUPIED_ACTIVE_PIECE) {
             cellInfo.Reset();
           }
         }
       }
+      // then recreate the active piece so many cells in the relevant direction
       for (int r = 0; r < ActivePiece.Layout.GetLength(0); r++) {
         for (int c = 0; c < ActivePiece.Layout.GetLength(1); c++) {
           if (ActivePiece.Layout[r, c]) {
@@ -125,6 +157,16 @@ namespace Quadris {
       if (CheckForOutOfBounds()) {
         ActivePiece.RotateRight();
       }
+    }
+
+    public void SoftDrop()
+    {
+            
+    }
+
+    public void HardDrop()
+    {
+
     }
 
     public bool ActivePieceCanMove(MoveDir moveDir) {
@@ -214,7 +256,39 @@ namespace Quadris {
           }
         }
       }
-      ActivePiece = Piece.GetRandPiece();
+      ActivePiece = NextPiece;
+      NextPiece = Piece.GetRandPiece();
+    }
+
+    public void HoldPiece() {
+      for (int r = 0; r < Grid.GetLength(0); r++) {
+        for (int c = 0; c < Grid.GetLength(1); c++) {
+          GridCellInfo cellInfo = Grid[r, c];
+          if (cellInfo.State == CellState.OCCUPIED_ACTIVE_PIECE) {
+            cellInfo.State = CellState.EMPTY;
+          }
+        }
+      }
+      //also check for changing held & nextPiece grid appropriately
+
+      ActivePiece = NextPiece;
+      NextPiece = Piece.GetRandPiece();
+    }
+
+    public void ReleasePiece() {
+      for (int r = 0; r < Grid.GetLength(0); r++) {
+        for (int c = 0; c < Grid.GetLength(1); c++) {
+          GridCellInfo cellInfo = Grid[r, c];
+          if (cellInfo.State == CellState.OCCUPIED_ACTIVE_PIECE) {
+            cellInfo.State = CellState.EMPTY;
+          }
+        }
+      }
+      //also check for changing heldPiece grid appropriately
+
+      Piece interPiece = ActivePiece;
+      ActivePiece = HeldPiece;
+      HeldPiece = interPiece;
     }
 
     public void CheckForLine() {
@@ -241,7 +315,7 @@ namespace Quadris {
       rows_cleared += cleared;
       if (cleared > 0)
        {
-        Scoreing(cleared);
+        Scoring(cleared);
        }
       CryoAdd(cleared);
     }
@@ -256,7 +330,7 @@ namespace Quadris {
             } 
         }
 
-        private void Scoreing(int cleared)
+        private void Scoring(int cleared)
         {
             switch (cleared)
             {

@@ -1,4 +1,5 @@
-﻿using Quadris.Properties;
+﻿# pragma warning disable 1591
+using Quadris.Properties;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -48,6 +49,8 @@ namespace Quadris {
       board = new Board();
       Piece piece = Piece.GetRandPiece();
       board.ActivePiece = piece;
+      Piece piece2 = Piece.GetRandPiece();
+      board.NextPiece = piece2;
       CreateGrid();
       sndPlayer = new SoundPlayer(Resources.bg_music);
       //sndPlayer.PlayLooping();
@@ -204,6 +207,25 @@ namespace Quadris {
                         board.cryo_stall--;
                     }
            break;
+
+        // this is for holding a piece
+        /*
+        case Keys.H:
+            if (board.HeldPiece != null)
+                        board.ReleasePiece;
+            else
+                        board.HoldPiece;
+        /**/
+
+        // this is for the soft drop
+        case Keys.Down:
+            //board.SoftDrop();
+            break;
+
+        // this is for the hard drop
+        case Keys.Up:
+                    //board.HardDrop();
+                    break;
 
             }
     }
