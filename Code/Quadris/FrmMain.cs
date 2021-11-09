@@ -116,6 +116,7 @@ namespace Quadris {
         board.RefreshGridWithActivePiece();
         UpdateGrid();
 
+            // Main driver for the CryoStall
             if (freeze && flock)
             {
                 flock = false;
@@ -123,6 +124,8 @@ namespace Quadris {
                 time = DateTime.Now;
                 tmrFps.Interval *= 2;
                 Unfreeze = true;
+
+                // Visual feed back
                 panBoard.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(162)))), ((int)(((byte)(255)))));
                 Console.WriteLine($"froze : {tmrFps.Interval}");
             }
@@ -200,6 +203,7 @@ namespace Quadris {
                     }
            break;
 
+        // Activate CryoStall
         case Keys.Space:
                     if(board.cryo_stall > 0 && flock)
                     {

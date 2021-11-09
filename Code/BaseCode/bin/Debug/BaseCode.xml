@@ -17,5 +17,23 @@
             <param name="col">the column</param>
             <returns>A GridCellInfo object</returns>
         </member>
+        <member name="M:Quadris.Board.CryoAdd(System.Int32)">
+            <summary>
+            the function to add a use of CryoStall
+            </summary>
+            <param name="cleared"></param>
+        </member>
+        <member name="M:Quadris.Board.Scoring(System.Int32)">
+            <summary>
+            function used to add points to the score
+            </summary>
+            <param name="cleared"></param>
+        </member>
+        <member name="M:Quadris.Board.LevelUp">
+            <summary>
+            function to level up the game
+            </summary>
+            <returns></returns>
+        </member>
     </members>
 </doc>

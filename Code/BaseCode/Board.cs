@@ -312,14 +312,22 @@ namespace Quadris {
           curRow--;
         }
       }
+      // tracks number of rows cleared
       rows_cleared += cleared;
+
+      // starts scoreing
       if (cleared > 0)
        {
         Scoring(cleared);
        }
+
+      // checks to add a use of CryoStall
       CryoAdd(cleared);
     }
-
+        /// <summary>
+        /// the function to add a use of CryoStall
+        /// </summary>
+        /// <param name="cleared"></param>
         private void CryoAdd(int cleared)
         {
             lncounter += cleared;
@@ -330,6 +338,10 @@ namespace Quadris {
             } 
         }
 
+        /// <summary>
+        /// function used to add points to the score
+        /// </summary>
+        /// <param name="cleared"></param>
         private void Scoring(int cleared)
         {
             switch (cleared)
@@ -350,6 +362,10 @@ namespace Quadris {
             }
         }
 
+        /// <summary>
+        /// function to level up the game
+        /// </summary>
+        /// <returns></returns>
         public bool LevelUp()
         {
             if((LV + 1) * 10 < rows_cleared)
