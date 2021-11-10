@@ -30,7 +30,7 @@ namespace Quadris {
             this.panBoard = new System.Windows.Forms.Panel();
             this.tmrFps = new System.Windows.Forms.Timer(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.panelctrl = new System.Windows.Forms.Panel();
             this.lblNextPiece = new System.Windows.Forms.Label();
             this.lblHeldPiece = new System.Windows.Forms.Label();
             this.BoardRF = new System.Windows.Forms.Timer(this.components);
@@ -203,20 +203,20 @@ namespace Quadris {
             this.label3.TabIndex = 10;
             this.label3.Text = "CryoStall:";
             // 
-            // panel2
+            // panelctrl
             // 
-            this.panel2.BackColor = System.Drawing.Color.Gray;
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.label10);
-            this.panel2.Controls.Add(this.label9);
-            this.panel2.Controls.Add(this.label8);
-            this.panel2.Controls.Add(this.label7);
-            this.panel2.Controls.Add(this.label5);
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Location = new System.Drawing.Point(804, 346);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(218, 272);
-            this.panel2.TabIndex = 12;
+            this.panelctrl.BackColor = System.Drawing.Color.Gray;
+            this.panelctrl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelctrl.Controls.Add(this.label10);
+            this.panelctrl.Controls.Add(this.label9);
+            this.panelctrl.Controls.Add(this.label8);
+            this.panelctrl.Controls.Add(this.label7);
+            this.panelctrl.Controls.Add(this.label5);
+            this.panelctrl.Controls.Add(this.label2);
+            this.panelctrl.Location = new System.Drawing.Point(804, 346);
+            this.panelctrl.Name = "panelctrl";
+            this.panelctrl.Size = new System.Drawing.Size(218, 272);
+            this.panelctrl.TabIndex = 12;
             // 
             // label2
             // 
@@ -296,7 +296,7 @@ namespace Quadris {
             this.Controls.Add(this.lblNextPiece);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblHeldPiece);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panelctrl);
             this.Controls.Add(this.panBoard);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FrmMain";
@@ -330,7 +330,7 @@ namespace Quadris {
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label CryoStall_disp;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panelctrl;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
