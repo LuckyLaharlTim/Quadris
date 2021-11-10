@@ -30,7 +30,9 @@ namespace Quadris {
             this.panBoard = new System.Windows.Forms.Panel();
             this.tmrFps = new System.Windows.Forms.Timer(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.lblNextPiece = new System.Windows.Forms.Label();
+            this.lblHeldPiece = new System.Windows.Forms.Label();
             this.BoardRF = new System.Windows.Forms.Timer(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.labelscore = new System.Windows.Forms.Label();
@@ -75,6 +77,17 @@ namespace Quadris {
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(156, 130);
             this.panel1.TabIndex = 2;
+            //
+            // panel2
+            // 
+            
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel2.Location = new System.Drawing.Point(54, 341);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(156, 130);
+            this.panel2.TabIndex = 2;/**/
             // 
             // lblNextPiece
             // 
@@ -87,6 +100,18 @@ namespace Quadris {
             this.lblNextPiece.Size = new System.Drawing.Size(175, 33);
             this.lblNextPiece.TabIndex = 3;
             this.lblNextPiece.Text = "Next Piece:";
+            // 
+            // lblHeldPiece
+            // 
+            this.lblHeldPiece.AutoSize = true;
+            this.lblHeldPiece.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHeldPiece.ForeColor = System.Drawing.Color.White;
+            this.lblHeldPiece.Location = new System.Drawing.Point(44, 300);
+            this.lblHeldPiece.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblHeldPiece.Name = "lblHeldPiece";
+            this.lblHeldPiece.Size = new System.Drawing.Size(175, 33);
+            this.lblHeldPiece.TabIndex = 3;
+            this.lblHeldPiece.Text = "Held Piece:"; /**/
             // 
             // BoardRF
             // 
@@ -270,6 +295,8 @@ namespace Quadris {
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblNextPiece);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.lblHeldPiece);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panBoard);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FrmMain";
@@ -289,9 +316,11 @@ namespace Quadris {
 
         #endregion
         private System.Windows.Forms.Panel panBoard;
-    private System.Windows.Forms.Timer tmrFps;
-    private System.Windows.Forms.Panel panel1;
-    private System.Windows.Forms.Label lblNextPiece;
+        private System.Windows.Forms.Timer tmrFps;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label lblNextPiece;
+        private System.Windows.Forms.Label lblHeldPiece;
         private System.Windows.Forms.Timer BoardRF;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label labelscore;

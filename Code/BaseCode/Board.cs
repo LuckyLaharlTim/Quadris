@@ -51,6 +51,8 @@ namespace Quadris {
 
   public class Board {
     public GridCellInfo[,] Grid { get; private set; }
+    public GridCellInfo[,] MiniGrid { get; private set;}
+    public GridCellInfo[,] MiniGridH { get; private set;}
     public Piece ActivePiece { get; set; }
     public Piece NextPiece { get; set; }
     public Piece HeldPiece { get; set; }
@@ -68,6 +70,21 @@ namespace Quadris {
       for (int i = 0; i < Grid.GetLength(0); i++) {
         for (int j = 0; j < Grid.GetLength(1); j++) {
           Grid[i, j] = new GridCellInfo();
+        }
+      }
+
+      // update grid functions use (row+4), so row here is 10
+      MiniGrid = new GridCellInfo[10, 6];
+      for (int i = 0; i < MiniGrid.GetLength(0); i++) {
+        for (int j = 0; j < MiniGrid.GetLength(1); j++) {
+          MiniGrid[i, j] = new GridCellInfo();
+        }
+      }
+
+      MiniGridH = new GridCellInfo[10, 6];
+      for (int i = 0; i < MiniGridH.GetLength(0); i++) {
+        for (int j = 0; j < MiniGridH.GetLength(1); j++) {
+          MiniGridH[i, j] = new GridCellInfo();
         }
       }
       /*
@@ -92,6 +109,7 @@ namespace Quadris {
       else {
         SettlePiece();
         CheckForLine();
+        RefreshGridWithNextPiece();
       }
     }
 
@@ -118,6 +136,62 @@ namespace Quadris {
       }
     }
 
+    // change comments
+    public void RefreshGridWithNextPiece() {
+    // for every cell in the grid . . .
+      for (int r = 0; r < MiniGrid.GetLength(0); r++) {
+        for (int c = 0; c < MiniGrid.GetLength(1); c++) {
+        // the value of the cell's row and column is saved
+          GridCellInfo cellInfo = MiniGrid[r, c];
+          // if the current cell is the active piece, change it back to empty (visually and by state)
+          if (cellInfo.State == CellState.OCCUPIED_NEXT_PIECE) {
+            cellInfo.Reset();
+          }
+        }
+      }
+      // then recreate the active piece so many cells in the relevant direction
+      for (int r = 0; r < NextPiece.Layout.GetLength(0); r++) {
+        for (int c = 0; c < NextPiece.Layout.GetLength(1); c++) {
+          if (NextPiece.Layout[r, c]) {
+            GridCellInfo cellInfo = GetCellInfo(r + NextPiece.GridRow, c + NextPiece.GridCol);
+            cellInfo?.SetToNextPiece(NextPiece);
+          }
+        }
+      }
+    }
+
+    // change comments
+    public void RefreshGridWithHeldPiece() {
+    // for every cell in the grid . . .
+      for (int r = 0; r < MiniGridH.GetLength(0); r++) {
+        for (int c = 0; c < MiniGridH.GetLength(1); c++) {
+        // the value of the cell's row and column is saved
+          GridCellInfo cellInfo = MiniGridH[r, c];
+          // if the current cell is the active piece, change it back to empty (visually and by state)
+          if (cellInfo.State == CellState.OCCUPIED_HELD_PIECE) {
+            cellInfo.Reset();
+          }
+        }
+      }
+      // after resetting panel, store current held piece in temp reference
+      //  and make active piece the new held piece
+      //Piece lastHeld = HeldPiece;
+      //HeldPiece = ActivePiece;
+
+      // then recreate the active piece so many cells in the relevant direction
+      for (int r = 0; r < HeldPiece.Layout.GetLength(0); r++) {
+        for (int c = 0; c < HeldPiece.Layout.GetLength(1); c++) {
+          if (HeldPiece.Layout[r, c]) {
+            GridCellInfo cellInfo = GetCellInfo(r + HeldPiece.GridRow, c + HeldPiece.GridCol);
+            cellInfo?.SetToHeldPiece(HeldPiece);
+          }
+        }
+      }
+
+      //if (HeldPiece != null)
+        //        RefreshGridWithActivePiece();
+    }
+
     /// <summary>
     /// 
     /// </summary>
@@ -130,7 +204,12 @@ namespace Quadris {
       else
         return Grid[row, col];
     }
-
+    
+    public void ResetPiecePosition(Piece piece)
+    {
+            piece.GridRow = 0;
+            piece.GridCol = 3;
+    }
     public void MoveActivePieceLeft() {
       if (ActivePieceCanMove(MoveDir.LEFT)) {
         ActivePiece.MoveLeft();
@@ -163,10 +242,14 @@ namespace Quadris {
     {
             
     }
-
+    
+    // first idea, doesn't work
     public void HardDrop()
     {
-
+            while (ActivePieceCanMove(MoveDir.DOWN)) 
+            {
+                Update();
+            }
     }
 
     public bool ActivePieceCanMove(MoveDir moveDir) {
@@ -271,7 +354,12 @@ namespace Quadris {
       }
       //also check for changing held & nextPiece grid appropriately
 
+      HeldPiece = ActivePiece;
+      ResetPiecePosition(HeldPiece);
       ActivePiece = NextPiece;
+      //ResetPiecePosition(ActivePiece);
+      RefreshGridWithActivePiece();
+      ResetPiecePosition(ActivePiece);
       NextPiece = Piece.GetRandPiece();
     }
 
@@ -288,7 +376,10 @@ namespace Quadris {
 
       Piece interPiece = ActivePiece;
       ActivePiece = HeldPiece;
+      RefreshGridWithActivePiece();
+      ResetPiecePosition(ActivePiece);
       HeldPiece = interPiece;
+      ResetPiecePosition(HeldPiece);
     }
 
     public void CheckForLine() {

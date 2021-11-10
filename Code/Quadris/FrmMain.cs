@@ -11,11 +11,18 @@ namespace Quadris {
   public partial class FrmMain : Form {
     private const int BOARD_COLS = 10;
     private const int BOARD_ROWS = 20;
+    
+    // constants for size of next piece and held piece boards
+    private const int MINIBOARD_COLS = 6;
+    private const int MINIBOARD_ROWS = 6;
 
+  
     private const int CELL_WIDTH = 20;
     private const int CELL_HEIGHT = 20;
 
     private Label[,] gridControls;
+    private Label[,] gridControls2;
+    private Label[,] gridControls3;
     private Board board;
 
     private SoundPlayer sndPlayer;
@@ -51,6 +58,7 @@ namespace Quadris {
       board.ActivePiece = piece;
       Piece piece2 = Piece.GetRandPiece();
       board.NextPiece = piece2;
+      board.RefreshGridWithNextPiece();
       CreateGrid();
       sndPlayer = new SoundPlayer(Resources.bg_music);
       //sndPlayer.PlayLooping();
@@ -68,6 +76,37 @@ namespace Quadris {
           gridControls[row, col] = lblCell;
         }
       }
+
+      panel1.Width = CELL_WIDTH * MINIBOARD_COLS + 4;
+      panel1.Height = CELL_HEIGHT * MINIBOARD_ROWS + 4;
+      gridControls2 = new Label[MINIBOARD_ROWS, MINIBOARD_COLS];
+      panel1.Controls.Clear();
+      for (int col = 0; col < MINIBOARD_COLS; col++) {
+        for (int row = 0; row < MINIBOARD_ROWS; row++) {
+          Label lblCell = MakeGridCell(row, col);
+          panel1.Controls.Add(lblCell);
+          gridControls2[row, col] = lblCell;
+        }
+      }
+
+      panel2.Width = CELL_WIDTH * MINIBOARD_COLS + 4;
+      panel2.Height = CELL_HEIGHT * MINIBOARD_ROWS + 4;
+      gridControls3 = new Label[MINIBOARD_ROWS, MINIBOARD_COLS];
+      panel2.Controls.Clear();
+      for (int col = 0; col < MINIBOARD_COLS; col++) {
+        for (int row = 0; row < MINIBOARD_ROWS; row++) {
+          Label lblCell = MakeGridCell(row, col);
+          panel2.Controls.Add(lblCell);
+          gridControls3[row, col] = lblCell;
+        }
+      }
+    }
+
+    private void UpdateGrids()
+    {
+            UpdateGrid();
+            UpdateMiniGrid();
+            UpdateHGrid();
     }
 
     private void UpdateGrid() {
@@ -84,6 +123,34 @@ namespace Quadris {
       }
     }
 
+    private void UpdateMiniGrid() {
+      for (int col = 0; col < MINIBOARD_COLS; col++) {
+        for (int row = 0; row < MINIBOARD_ROWS; row++) {
+          GridCellInfo cellInfo = board.MiniGrid[row + 4, col];
+          if (cellInfo.State == CellState.OCCUPIED_NEXT_PIECE || cellInfo.State == CellState.OCCUPIED_PREVIOUSLY) {
+            gridControls2[row, col].Image = pieceColorToImgMap[cellInfo.Color];
+          }
+          else {
+            gridControls2[row, col].Image = null;
+          }
+        }
+      }
+    }
+
+    private void UpdateHGrid() {
+      for (int col = 0; col < MINIBOARD_COLS; col++) {
+        for (int row = 0; row < MINIBOARD_ROWS; row++) {
+          GridCellInfo cellInfo = board.MiniGridH[row + 4, col];
+          if (cellInfo.State == CellState.OCCUPIED_HELD_PIECE || cellInfo.State == CellState.OCCUPIED_PREVIOUSLY) {
+            gridControls3[row, col].Image = pieceColorToImgMap[cellInfo.Color];
+          }
+          else {
+            gridControls3[row, col].Image = null;
+          }
+        }
+      }
+    }
+
     private Label MakeGridCell(int row, int col) {
       return new Label() {
         Text = "",
@@ -95,13 +162,13 @@ namespace Quadris {
       };
     }
     /// <summary>
-    /// timer responce for falling peace
+    /// timer response for falling piece
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
     private void tmrFps_Tick(object sender, EventArgs e) {
       board.Update();
-      UpdateGrid();
+      UpdateGrids();
     }
 
         /// <summary>
@@ -114,7 +181,9 @@ namespace Quadris {
    private void BoardRF_Tick(object sender, EventArgs e)
     {
         board.RefreshGridWithActivePiece();
-        UpdateGrid();
+        board.RefreshGridWithNextPiece();
+        //board.RefreshGridWithHeldPiece();
+        UpdateGrids();
 
             // Main driver for the CryoStall
             if (freeze && flock)
@@ -213,22 +282,23 @@ namespace Quadris {
            break;
 
         // this is for holding a piece
-        /*
+        
         case Keys.H:
             if (board.HeldPiece != null)
-                        board.ReleasePiece;
+                        board.ReleasePiece();
             else
-                        board.HoldPiece;
+                        board.HoldPiece();
+            break;
         /**/
 
         // this is for the soft drop
         case Keys.Down:
-            //board.SoftDrop();
+            board.SoftDrop();
             break;
 
         // this is for the hard drop
         case Keys.Up:
-                    //board.HardDrop();
+                    board.HardDrop();
                     break;
 
             }

@@ -70,7 +70,7 @@ namespace Quadris {
         }
 
     public static Piece GetRandPiece() {
-      int pieceNum = rand.Next(7);//Enum.GetValues(typeof(PieceType)).Length);
+      int pieceNum = rand.Next(Enum.GetValues(typeof(PieceType)).Length);
       if (GrabBag(pieceNum))
                 return MakePiece((PieceType)pieceNum);
       else
