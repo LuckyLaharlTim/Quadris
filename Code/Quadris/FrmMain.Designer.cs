@@ -48,6 +48,7 @@ namespace Quadris {
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -207,6 +208,7 @@ namespace Quadris {
             // 
             this.panelctrl.BackColor = System.Drawing.Color.Gray;
             this.panelctrl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelctrl.Controls.Add(this.label11);
             this.panelctrl.Controls.Add(this.label10);
             this.panelctrl.Controls.Add(this.label9);
             this.panelctrl.Controls.Add(this.label8);
@@ -268,11 +270,21 @@ namespace Quadris {
             this.label9.TabIndex = 4;
             this.label9.Text = "Rotate Right : X";
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(3, 164);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(137, 22);
+            this.label11.TabIndex = 4;
+            this.label11.Text = "Hold Piece : H";
+            // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(3, 164);
+            this.label10.Location = new System.Drawing.Point(3, 195);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(149, 22);
             this.label10.TabIndex = 5;
@@ -331,6 +343,7 @@ namespace Quadris {
         private System.Windows.Forms.Label CryoStall_disp;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panelctrl;
+        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
