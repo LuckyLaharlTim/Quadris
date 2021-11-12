@@ -50,6 +50,7 @@ namespace Quadris {
             this.label9 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -81,7 +82,6 @@ namespace Quadris {
             //
             // panel2
             // 
-            
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel2.Location = new System.Drawing.Point(54, 341);
@@ -89,6 +89,14 @@ namespace Quadris {
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(156, 130);
             this.panel2.TabIndex = 2;/**/
+            // 
+            // imageH
+            //
+            /*
+            this.imageH.Location = new System.Drawing.Point(798, 293);
+            this.imageH.Name = "imageH";
+            this.imageH.Size = new System.Drawing.Size(145, 119);
+            this.imageH.TabIndex = 10;/**/
             // 
             // lblNextPiece
             // 
@@ -208,6 +216,7 @@ namespace Quadris {
             // 
             this.panelctrl.BackColor = System.Drawing.Color.Gray;
             this.panelctrl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelctrl.Controls.Add(this.label12);
             this.panelctrl.Controls.Add(this.label11);
             this.panelctrl.Controls.Add(this.label10);
             this.panelctrl.Controls.Add(this.label9);
@@ -290,13 +299,22 @@ namespace Quadris {
             this.label10.TabIndex = 5;
             this.label10.Text = "CryoStall : Space";
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(3, 226);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(137, 22);
+            this.label12.TabIndex = 4;
+            this.label12.Text = "Hard Drop : Up";
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(1155, 1050);
-            this.Controls.Add(this.panel2);
             this.Controls.Add(this.CryoStall_disp);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.labellevel);
@@ -308,6 +326,7 @@ namespace Quadris {
             this.Controls.Add(this.lblNextPiece);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblHeldPiece);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panelctrl);
             this.Controls.Add(this.panBoard);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -317,6 +336,7 @@ namespace Quadris {
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmMain_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmMain_KeyDown);
+            //this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.FrmMain_KeyUp);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.ResumeLayout(false);
@@ -343,6 +363,7 @@ namespace Quadris {
         private System.Windows.Forms.Label CryoStall_disp;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panelctrl;
+        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;

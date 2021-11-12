@@ -240,7 +240,10 @@ namespace Quadris {
 
     public void SoftDrop()
     {
-            
+            //int dropMultiple = 2;
+
+            //tmrFps.Interval *= dropMultiple;
+
     }
     
     // first idea, doesn't work
@@ -339,6 +342,8 @@ namespace Quadris {
           }
         }
       }
+      ActivePiece = null;
+      CheckForEnd();
       ActivePiece = NextPiece;
       NextPiece = Piece.GetRandPiece();
     }
@@ -380,6 +385,20 @@ namespace Quadris {
       ResetPiecePosition(ActivePiece);
       HeldPiece = interPiece;
       ResetPiecePosition(HeldPiece);
+    }
+
+    public bool CheckForEnd()
+    {
+            bool atEnd = false;
+            for (int col = 0; col < Grid.GetLength(1); col++)
+            {
+                GridCellInfo cellInfo = Grid[21,col];
+                if ((cellInfo.State == CellState.OCCUPIED_PREVIOUSLY) && (ActivePiece != null))
+                    // stop the execution of the game
+                    Console.WriteLine("The game has ended.");
+                    atEnd = true;
+            }
+            return atEnd;
     }
 
     public void CheckForLine() {

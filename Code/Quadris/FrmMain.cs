@@ -7,6 +7,7 @@ using System.Media;
 using System.Windows.Forms;
 using System.Threading;
 
+
 namespace Quadris {
   public partial class FrmMain : Form {
     private const int BOARD_COLS = 10;
@@ -29,6 +30,9 @@ namespace Quadris {
 
     public bool freeze = false;
     public bool Unfreeze = false;
+
+    //[DllImport("user32.dll")]
+    //public static extern short GetAsyncKeyState(int key);
 
 
         private static readonly Dictionary<PieceColor, Image> pieceColorToImgMap = new Dictionary<PieceColor, Image> {
@@ -58,10 +62,10 @@ namespace Quadris {
       board.ActivePiece = piece;
       Piece piece2 = Piece.GetRandPiece();
       board.NextPiece = piece2;
-      board.RefreshGridWithNextPiece();
+      //board.RefreshGridWithNextPiece();
       CreateGrid();
       sndPlayer = new SoundPlayer(Resources.bg_music);
-      //sndPlayer.PlayLooping();
+      sndPlayer.PlayLooping();
     }
 
     private void CreateGrid() {
@@ -135,6 +139,8 @@ namespace Quadris {
           }
         }
       }
+
+      //panel1.BackgroundImage = gridControls2.Image;
     }
 
     private void UpdateHGrid() {
@@ -149,6 +155,8 @@ namespace Quadris {
           }
         }
       }
+      //found recommendations to set the panel's background image to an external one & tried to do so
+      //panel2.BackgroundImage = gridControls3.Image;
     }
 
     private Label MakeGridCell(int row, int col) {
@@ -169,6 +177,8 @@ namespace Quadris {
     private void tmrFps_Tick(object sender, EventArgs e) {
       board.Update();
       UpdateGrids();
+      //if (board.CheckForEnd())
+      //          tmrFps.Enabled = false;
     }
 
         /// <summary>
@@ -293,8 +303,13 @@ namespace Quadris {
 
         // this is for the soft drop
         case Keys.Down:
-            board.SoftDrop();
+                 /*   
+            while (e.KeyCode == Keys.Down)
+                tmrFps.Interval = 400;           
+            tmrFps.Interval = 200; 
+                    /**/
             break;
+        // code for down in 0x28
 
         // this is for the hard drop
         case Keys.Up:
@@ -303,7 +318,13 @@ namespace Quadris {
 
             }
     }
-
+        /*
+        private void FrmMain_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down)
+                tmrFps.Interval /= 2;
+        }
+        /**/
 
     }
 }
