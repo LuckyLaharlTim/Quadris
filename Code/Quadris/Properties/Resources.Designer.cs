@@ -72,6 +72,16 @@ namespace Quadris.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap BGimg {
+            get {
+                object obj = ResourceManager.GetObject("BGimg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap cell_blue {
             get {
                 object obj = ResourceManager.GetObject("cell_blue", resourceCulture);
@@ -196,6 +206,15 @@ namespace Quadris.Properties {
             get {
                 object obj = ResourceManager.GetObject("cell_yellow", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Quadris_loop {
+            get {
+                return ResourceManager.GetStream("Quadris_loop", resourceCulture);
             }
         }
     }

@@ -64,7 +64,7 @@ namespace Quadris {
       board.NextPiece = piece2;
       //board.RefreshGridWithNextPiece();
       CreateGrid();
-      sndPlayer = new SoundPlayer(Resources.bg_music);
+      sndPlayer = new SoundPlayer(Resources.Quadris_loop);
       sndPlayer.PlayLooping();
     }
 

@@ -123,4 +123,29 @@
   <metadata name="BoardRF.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>121, 17</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAQAQAAAAAAAAAAAAAAAAAAAAA
+        AAC4HBT/aQYA/10FAP9dBQD/XQUA/10FAP9dBgD/XQYA/10GAP9dBgD/XQYA/10GAP9dBgD/XQYA/1IF
+        AP8gAwD/931t/7YvHv9sDQD/XQsA/10LAP9dCwD/XQsA/10LAP9dCwD/XQsA/10LAP9dDAD/XQwA/08K
+        AP8vBgD/VQsA//+TfP/0gWj/zj0e/74kAP++JAD/viQA/74kAP++JAD/viQA/74lAP++JQD/bSiN/y0t
+        //8tLf//URAA/2ASAP//m3z//5t8//9iMv//PAD//z0A/1cvy/8tLf//LS3//y0t//8tLf//pjZr/y0t
+        //8tLf//qS4l/2AYAP9gGAD//6R8//+kfP//cTL/w0VJ/y0t//8tLf//LS3//y0t//8tLf//LS3//y0t
+        //8tLf//pkFr/788AP9gHgD/YB8A//+sfP//rHz/4HBP/y0t//8tLf//QTHm//9eAP//XwD//18A/3E9
+        rP8tLf//LS3//1c2y/+/SAD/YCQA/2AkAP//tHz//7R8/1c/1f8tLf//VznL//9tAP//bgD//24A/6ZS
+        a/8tLf//LS3//y0t//8tLf//lUlJ/2AqAP9gKgD//7x8/+Cmj/8tLf//LS3//+BwJf//fAD//30A/6Za
+        a/8tLf//LS3//+BxJf9xR6z/LS3//1w9rP9gMAD/YDAA///EfP/DmaH/LS3//0E25v//jgD//48A//+P
+        AP//jwD//48A//+QAP//kAD/iliN/y0t//9cQaz/YDYA/2A3AP//zHz/w5+h/y0t//9BN+b//50A//+e
+        AP//ngD//54A//+eAP//nwD//58A/4pfjf8tLf//XEWs/2A8AP9gPAD//9R8/+C7j/8tLf//LS3//+CZ
+        Jf//rQD//64A//+uAP//rgD//64A//+vAP9XR8v/LS3//21Sjf9gQgD/YEIA///dfP//3Xz/V0zV/y0t
+        //9xW6z//7wA//+9AP//vQD//70A//+9AP/DlEn/LS3//y0t//+pgCX/YEgA/2BIAP//5Xz//+V8/+C9
+        T/8tLf//LS3//1dNy///zwD//88A///PAP+mi2v/LS3//y0t//+KdY3/v50A/2BPAP9gTwD//+18///v
+        kP//6WT/w65s/y0t//8tLf//LS3//y0t//8tLf//LS3//y0t//9xaLz//+Qx/8+5Hv9wYgD/YFQA///2
+        i///+r7///iQ///2e///9nv/cW7U/y0t//8tLf//LS3//y0t///g2I7///d7///3e//17Gj/ubAf/2xl
+        AP///tP///6K///9e////Xv///17///+e////nv///57///+e////nv///57///+e////nv///57//j2
+        bf+8uxb/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAA==
+</value>
+  </data>
 </root>
