@@ -71,39 +71,40 @@ namespace Quadris {
 
     public static Piece GetRandPiece() {
       int pieceNum = rand.Next(Enum.GetValues(typeof(PieceType)).Length);
-      if (GrabBag(pieceNum))
-                return MakePiece((PieceType)pieceNum);
-      else
-                return GetRandPiece();
-      //Piece newPiece = MakePiece((PieceType)pieceNum);
-      //return MakePiece((PieceType)pieceNum);
-        /*if (GrabBag(newPiece))
-                return newPiece;
-        else
-                return GetRandPiece();
-        */
-        //return MakePiece((PieceType)pieceNum);
+      //return (GrabBag(pieceNum));
+                
+      return MakePiece((PieceType)pieceNum);
+      
       }
 
       /**/
+
+
+        // GIVES REALLY GLITCHY ERRORS WHEN USED, also seems to have the same start of O->T->S->... the first time around (fine with 2nd grab bag onwards)
         // checks if current pieceNum is in the list of available PieceTypes (by int value)
         //   currently updates numbers correctly, but still allows already grabbed pieces to be made
         //   --know numbers update correctly due to breakpoint--
-        public static bool GrabBag(int pieceNum)
+        public static Piece GrabBag()
         {
+            Piece potential = MakePiece((PieceType)rand.Next(Enum.GetValues(typeof(PieceType)).Length));
             //Console.WriteLine(Board.gBag.Count);
-            bool goodPiece = true;
+            //bool goodPiece = true;
             if (Board.gBag.Count > 0)
             {
-                if (Board.gBag.Contains(pieceNum))
+                if (Board.gBag.Contains(potential))
                 {
-                    Board.gBag.Remove(pieceNum);
+                    Board.gBag.Remove(potential);
+                    return potential;
                 }
 
-                if (!(Board.gBag.Contains(pieceNum)))
+                else //(!(Board.gBag.Contains(potential)))
                 {
-                    goodPiece = false;
-                    System.Diagnostics.Debug.WriteLine($"Can't make piece number {pieceNum}");
+                    //goodPiece = false;
+                    System.Diagnostics.Debug.WriteLine($"Can't make piece.");
+                    potential = Board.gBag[(Board.gBag.Count - 1)];
+                    Board.gBag.Remove(potential);
+                    return potential;
+
 
                 }
             }
@@ -111,9 +112,10 @@ namespace Quadris {
             {
                 
                 Board.gBag = Board.PieceArr.ToList();
-                Board.gBag.Remove(pieceNum);
+                Board.gBag.Remove(potential);
+                return potential;
             }
-            return goodPiece;
+            //return goodPiece;
         }
     /*
         // uses array implementation

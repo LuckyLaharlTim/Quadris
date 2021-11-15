@@ -60,8 +60,8 @@ namespace Quadris {
     public int score = 0;
     public int rows_cleared = 0;
     public int LV = 0;
-    public static int[] PieceArr;
-    public static List<int> gBag;
+    public static Piece[] PieceArr;
+    public static List<Piece> gBag;
     public int cryo_stall = 3;
     public int lncounter = 0;
 
@@ -94,7 +94,7 @@ namespace Quadris {
                 PieceArr[let] = (PieceType)let;
             }
       /**/
-        PieceArr = new int[] {0,1,2,3,4,5,6};
+        PieceArr = new Piece[] {Piece.MakePiece(PieceType.L),Piece.MakePiece(PieceType.J),Piece.MakePiece(PieceType.S),Piece.MakePiece(PieceType.Z),Piece.MakePiece(PieceType.I),Piece.MakePiece(PieceType.T),Piece.MakePiece(PieceType.O)};
         gBag = PieceArr.ToList();
     }
 
@@ -240,11 +240,19 @@ namespace Quadris {
 
     public void SoftDrop()
     {
+            if (ActivePieceCanMove(MoveDir.DOWN))
+            {
+                if (ActivePieceCanMove(MoveDir.DOWN))
+                {
+                    Update();
+                    Update();
+                }
+            }
             //int dropMultiple = 2;
 
             //tmrFps.Interval *= dropMultiple;
 
-    }
+        }
     
     // first idea, doesn't work
     public void HardDrop()

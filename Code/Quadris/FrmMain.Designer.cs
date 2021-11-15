@@ -52,6 +52,8 @@ namespace Quadris {
             this.CryoStall_disp = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.panelctrl.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -343,6 +345,10 @@ namespace Quadris {
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmMain_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmMain_KeyDown);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.panelctrl.ResumeLayout(false);
             this.panelctrl.PerformLayout();
             this.ResumeLayout(false);

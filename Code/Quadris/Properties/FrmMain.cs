@@ -327,7 +327,7 @@ namespace Quadris {
 
         // this is for holding a piece
         
-        case Keys.S:
+        case Keys.H:
             if (board.HeldPiece != null)
                     { 
                         board.ReleasePiece();

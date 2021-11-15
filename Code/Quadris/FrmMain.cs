@@ -62,11 +62,46 @@ namespace Quadris {
       board.ActivePiece = piece;
       Piece piece2 = Piece.GetRandPiece();
       board.NextPiece = piece2;
+      panel1.BackgroundImage = getImage(board.NextPiece.Type);
       //board.RefreshGridWithNextPiece();
       CreateGrid();
       sndPlayer = new SoundPlayer(Resources.Quadris_loop);
       sndPlayer.PlayLooping();
     }
+
+    
+    private Image getImage(PieceType title)
+    {       
+
+            Image image = Resources.NO_block;
+                switch (title)
+                {
+                    case PieceType.O:
+                            image = Resources.O_block;
+                            break;
+                    case PieceType.L:
+                            image = Resources.L_block;
+                            break;
+                    case PieceType.J:
+                            image = Resources.J_block;
+                            break;
+                    case PieceType.I:
+                            image = Resources.I_block;
+                            break;
+                    case PieceType.T:
+                            image = Resources.T_block;
+                            break;
+                    case PieceType.S:
+                            image = Resources.S_block;
+                            break;
+                    case PieceType.Z:
+                            image = Resources.Z_block;
+                            break;
+
+                }
+            return image;
+    }
+    
 
     private void CreateGrid() {
       panBoard.Width = CELL_WIDTH * BOARD_COLS + 4;
@@ -177,9 +212,10 @@ namespace Quadris {
     private void tmrFps_Tick(object sender, EventArgs e) {
       board.Update();
       UpdateGrids();
-      //if (board.CheckForEnd())
-      //          tmrFps.Enabled = false;
-    }
+      panel1.BackgroundImage = getImage(board.NextPiece.Type);
+            //if (board.CheckForEnd())
+            //          tmrFps.Enabled = false;
+        }
 
         /// <summary>
         /// timer for over all game. refreshes board, advances level, displays game info.
@@ -294,15 +330,22 @@ namespace Quadris {
         // this is for holding a piece
         
         case Keys.H:
-            if (board.HeldPiece != null)
+                    if (board.HeldPiece != null)
+                    {
                         board.ReleasePiece();
-            else
+                        panel2.BackgroundImage = getImage(board.HeldPiece.Type);
+                    }
+                    else
                         board.HoldPiece();
-            break;
+                        panel1.BackgroundImage = getImage(board.NextPiece.Type);
+                        panel2.BackgroundImage = getImage(board.HeldPiece.Type);
+                    break;
         /**/
 
         // this is for the soft drop
         case Keys.Down:
+
+                    board.SoftDrop();
                  /*   
             while (e.KeyCode == Keys.Down)
                 tmrFps.Interval = 400;           

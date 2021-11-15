@@ -160,5 +160,29 @@
   <ItemGroup>
     <None Include="Data\BGimg.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NO_block.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\i-block.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\j-block.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\l-block.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\o-block.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\s-block.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\t-block.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\z-block.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
