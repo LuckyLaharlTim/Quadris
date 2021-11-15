@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Media;
 using System.Windows.Forms;
 using System.Threading;
+using System.Linq;
 
 
 namespace Quadris {
@@ -57,16 +58,21 @@ namespace Quadris {
     }
 
     private void FrmMain_Load(object sender, EventArgs e) {
-      board = new Board();
-      Piece piece = Piece.GetRandPiece();
-      board.ActivePiece = piece;
-      Piece piece2 = Piece.GetRandPiece();
-      board.NextPiece = piece2;
-      panel1.BackgroundImage = getImage(board.NextPiece.Type);
-      //board.RefreshGridWithNextPiece();
-      CreateGrid();
-      sndPlayer = new SoundPlayer(Resources.Quadris_loop);
-      sndPlayer.PlayLooping();
+            StartGame();
+    }
+
+    private void StartGame()
+    {
+            board = new Board();
+            Piece piece = Piece.GetRandPiece();
+            board.ActivePiece = piece;
+            Piece piece2 = Piece.GetRandPiece();
+            board.NextPiece = piece2;
+            panel1.BackgroundImage = getImage(board.NextPiece.Type);
+            //board.RefreshGridWithNextPiece();
+            CreateGrid();
+            sndPlayer = new SoundPlayer(Resources.Quadris_loop);
+            sndPlayer.PlayLooping();
     }
 
     
@@ -153,7 +159,11 @@ namespace Quadris {
         for (int row = 0; row < BOARD_ROWS; row++) {
           GridCellInfo cellInfo = board.Grid[row + 4, col];
           if (cellInfo.State == CellState.OCCUPIED_ACTIVE_PIECE || cellInfo.State == CellState.OCCUPIED_PREVIOUSLY) {
-            gridControls[row, col].Image = pieceColorToImgMap[cellInfo.Color];
+                        if (cellInfo.State == CellState.OCCUPIED_ACTIVE_PIECE & cellInfo.State == CellState.OCCUPIED_PREVIOUSLY)
+                        {
+                            cellInfo.State = CellState.COLLISION;
+                        }
+                            gridControls[row, col].Image = pieceColorToImgMap[cellInfo.Color];
           }
           else {
             gridControls[row, col].Image = null;
@@ -210,11 +220,21 @@ namespace Quadris {
     /// <param name="sender"></param>
     /// <param name="e"></param>
     private void tmrFps_Tick(object sender, EventArgs e) {
+      Piece[] possible = { board.ActivePiece, board.NextPiece, board.HeldPiece };
+      //Boolean atEnd = false;
       board.Update();
       UpdateGrids();
       panel1.BackgroundImage = getImage(board.NextPiece.Type);
-            //if (board.CheckForEnd())
-            //          tmrFps.Enabled = false;
+            /*
+      for (int col = 0; col < board.Grid.GetLength(1); col++)
+      {
+                if (board.Grid[19, col].State == CellState.OCCUPIED_PREVIOUSLY)
+                            atEnd = true;
+      }
+          */      
+      if (board.CheckForEnd())
+          StartGame();
+            
         }
 
         /// <summary>

@@ -351,8 +351,8 @@ namespace Quadris {
         }
       }
       ActivePiece = null;
-      CheckForEnd();
       ActivePiece = NextPiece;
+      //CheckForEnd();
       NextPiece = Piece.GetRandPiece();
     }
 
@@ -397,14 +397,22 @@ namespace Quadris {
 
     public bool CheckForEnd()
     {
+            Piece[] possible = { NextPiece, HeldPiece };
             bool atEnd = false;
             for (int col = 0; col < Grid.GetLength(1); col++)
             {
-                GridCellInfo cellInfo = Grid[21,col];
-                if ((cellInfo.State == CellState.OCCUPIED_PREVIOUSLY) && (ActivePiece != null))
-                    // stop the execution of the game
-                    Console.WriteLine("The game has ended.");
-                    atEnd = true;
+                GridCellInfo cellInfo = Grid[4,col];
+                GridCellInfo AcellInfo = Grid[3, col];
+                if (cellInfo.State == CellState.OCCUPIED_PREVIOUSLY)
+                {
+                    if (cellInfo.State == CellState.OCCUPIED_PREVIOUSLY)
+                    {
+                        ActivePiece = new Piece("1111111111111111", PieceColor.YELLOW, PieceType.O);
+                        // stop the execution of the game
+                        Console.WriteLine("The game has ended.");
+                        atEnd = true;
+                    }
+                }
             }
             return atEnd;
     }
